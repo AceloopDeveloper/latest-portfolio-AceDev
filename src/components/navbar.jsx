@@ -42,7 +42,7 @@ export default function Navbar() {
       >
         <div className="max-w-350 mx-auto px-6 md:px-12 lg:px-20 h-19 flex items-center justify-between">
           <a href="#hero" className="aceloop-serif italic text-[22px] tracking-tight text-[#f5f4f0]">
-            AceLoop
+            AceDev
           </a>
 
           {/* Desktop nav */}
@@ -79,22 +79,43 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Backdrop — blurs/dims everything outside the drawer, tap to close */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-[#0a0a0a] transition-opacity duration-300 flex flex-col items-center justify-center gap-8 ${
+        onClick={() => setMenuOpen(false)}
+        className={`md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
+      />
+
+      {/* Side drawer — slides in from the right, ~75% width */}
+      <div
+        className={`md:hidden fixed top-0 right-0 z-60 h-full w-[75%] max-w-xs bg-[#0a0a0a] border-l border-white/10 transition-transform duration-300 ease-out flex flex-col ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        {NAV_LINKS.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
+        <div className="flex items-center justify-end h-19 px-6">
+          <button
+            aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
-            className="aceloop-serif italic text-3xl text-[#f5f4f0]"
+            className="relative w-8 h-8 flex items-center justify-center"
           >
-            {link.label}
-          </a>
-        ))}
+            <span className="absolute h-px w-6 bg-[#f5f4f0] rotate-45" />
+            <span className="absolute h-px w-6 bg-[#f5f4f0] -rotate-45" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col items-start gap-8 px-8 mt-8">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="aceloop-serif italic text-2xl text-[#f5f4f0]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </div>
   );
