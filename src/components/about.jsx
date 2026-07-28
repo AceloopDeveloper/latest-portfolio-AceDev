@@ -1,5 +1,6 @@
 import React from 'react';
 import Reveal from './Reveal';
+import ProfileCard from './Profile';
 
 export default function AboutSection() {
   return (
@@ -14,15 +15,9 @@ export default function AboutSection() {
       `}</style>
 
       <Reveal className="max-w-350 w-full mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        {/* Photo — reused hero photo */}
+        {/* Profile card — replaces the old raw photo */}
         <div className="order-1">
-          <div className="relative aspect-4/5 w-full max-w-md mx-auto md:mx-0 overflow-hidden">
-            <img src="./src/assets/hero4.png" alt="Hero" className="w-full h-full object-cover" />
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ boxShadow: 'inset 0 0 90px 50px #0a0a0a' }}
-            />
-          </div>
+          <ProfileCard />
         </div>
 
         {/* Text */}
